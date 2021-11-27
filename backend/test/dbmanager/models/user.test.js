@@ -6,7 +6,7 @@ describe('MongoDB User Model', () => {
   after(async() => {
     await User.deleteMany({});
     await disconnect();
-  })
+  });
 
   it('creates user', done => {
     User.create({
@@ -27,7 +27,7 @@ describe('MongoDB User Model', () => {
     User.create(userObj)
       .then(_ => done('does anyway'))
       .catch(_ => done())
-  })
+  });
 
   it('doesn\'t allow duplpicate email', done => {
     userObj = {
@@ -39,5 +39,5 @@ describe('MongoDB User Model', () => {
     User.create(userObj)
       .then(_ => done('does anyway'))
       .catch(_ => done())
-  })
+  });
 });

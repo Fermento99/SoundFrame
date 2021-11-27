@@ -21,13 +21,15 @@ const createUser = async (userObj) => {
 };
 
 /**
- * 
- * @param {email, pass} userObj 
+ * Returrns user ID if email and password match
+ * @param {object} userObj User login data
+ * @param {string} userObj.email user email
+ * @param {string} userObj.pass user passowrd
  * @returns userId: number | false 
  */
 const loginUser = async (userObj) => {
   const user = await User.findOne({ email: userObj.email }).exec().catch(err => { throw err; });
-  if (!user || !userObj.pass) return false; 
+  if (!user || !userObj.pass) return false;
   try {
     return bcrypt.compareSync(userObj.pass, user.password)
       ? user

@@ -32,8 +32,8 @@ router.post('/refresh', (req, res) => {
 
   try {
     const userId = verifyRefreshToken(req.body.token);
-    const accTok = genAccessToken({ userId });
-    const refTok = genRefreshToken({ userId });
+    const accTok = genAccessToken(userId);
+    const refTok = genRefreshToken(userId);
     res.status(200).json({ accessToken: accTok, refreshToken: refTok });
   } catch (err) {
     console.log(err);
