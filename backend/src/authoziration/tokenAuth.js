@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 */
 const genAccessToken = userId => {
   return jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
-}
+};
 
 /**
 * Generates Refresh Token for given User ID
@@ -16,7 +16,7 @@ const genAccessToken = userId => {
 */
 const genRefreshToken = userId => {
   return jwt.sign({ userId }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '2h' });
-}
+};
 
 /**
 * Verifies Access Token, and returns 
@@ -26,7 +26,7 @@ const genRefreshToken = userId => {
 const verifyAccessToken = token => {
   const { userId } = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
   return userId;
-}
+};
 
 /**
 * Verifies Access Token, and returns 
@@ -37,7 +37,7 @@ const verifyAccessToken = token => {
 const verifyRefreshToken = token => {
   const { userId } = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
   return userId;
-}
+};
 
 module.exports.genAccessToken = genAccessToken;
 module.exports.genRefreshToken = genRefreshToken;

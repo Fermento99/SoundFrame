@@ -3,7 +3,12 @@ const User = require('../../dbmanager/models/user');
 
 /**
  * Registers new user in database
- * @param {email, username, pass, pass2, avatar?} userObj
+ * @param {object} userObj user data
+ * @param {string} userObj.username user's username
+ * @param {string} userObj.pass user's password
+ * @param {string} userObj.pass2 user's password repeated
+ * @param {string} userObj.email user's email
+ * @param {object} userObj.avatar user's avatar
  * @throws MongoDB error
  * @throws 'passwords dont match' error
  */
@@ -17,7 +22,7 @@ const createUser = async (userObj) => {
     avatar: userObj.avatar,
   };
   await User.syncIndexes();
-  await User.create(user).catch(err => { throw err; });
+  await User.create(user);
 };
 
 /**

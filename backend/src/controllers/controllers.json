@@ -1,5 +1,6 @@
 {
   "modules": [
-    "user"
+    "user",
+    "post"
   ]
 }

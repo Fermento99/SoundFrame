@@ -1,7 +1,7 @@
 const express = require('express');
-const { createUser, loginUser } = require('./userBO');
-const { genAccessToken, genRefreshToken, refresh, verifyRefreshToken } = require('../../authoziration/authorization');
 const router = express.Router();
+const { createUser, loginUser } = require('./userBO');
+const { genAccessToken, genRefreshToken, verifyRefreshToken } = require('../../authoziration/tokenAuth');
 
 router.post('/register', (req, res) => {
   console.log('registering user');
@@ -18,7 +18,7 @@ router.post('/login', (req, res) => {
     .then(user => {
       userData = { id: user._id, email: user.email, username: user.username, avatar: user.avatar };
       user
-        ? res.status(200).json({ user: userData, accessToken: genAccessToken({ userId: user._id }), refreshToken: genRefreshToken({ userId: user._id }) })
+        ? res.status(200).json({ user: userData, accessToken: genAccessToken(user._id), refreshToken: genRefreshToken(user._id) })
         : res.status(401).json({ message: 'wrong username or password' });
     })
     .catch(err => {

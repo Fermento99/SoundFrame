@@ -1,7 +1,7 @@
 const User = require('../../../src/dbmanager/models/user');
 const { connect, disconnect } = require('../connection.test');
 
-describe('MongoDB User Model', () => {
+describe('User Model', () => {
   before(async() => await connect());
   after(async() => {
     await User.deleteMany({});
@@ -9,16 +9,18 @@ describe('MongoDB User Model', () => {
   });
 
   it('creates user', done => {
-    User.create({
+    const userObj = {
       username: 'Test',
       password: 'Pass',
       email: 'eex@ex.pl',
-    }).then(_ => done())
+    }
+    User.create(userObj)
+      .then(_ => done())
       .catch(err => done(err));
   });
 
   it('doesn\'t allow duplpicate username', done => {
-    userObj = {
+    const userObj = {
       username: 'Test',
       email: 'eex2@ex.pl',
       pass: 'secretPassword123',
@@ -30,7 +32,7 @@ describe('MongoDB User Model', () => {
   });
 
   it('doesn\'t allow duplpicate email', done => {
-    userObj = {
+    const userObj = {
       username: 'Test2',
       email: 'eex@ex.pl',
       pass: 'secretPassword123',
