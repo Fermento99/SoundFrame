@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createUser, loginUser } = require('./userBO');
+const { createUser, loginUser } = require('./authBO');
 const { genAccessToken, genRefreshToken, verifyRefreshToken } = require('../../authoziration/tokenAuth');
 
 router.post('/register', (req, res) => {
@@ -23,9 +23,9 @@ router.post('/login', (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(400).json({ message: err })
+      res.status(400).json({ message: err });
     });
-})
+});
 
 router.post('/refresh', (req, res) => {
   console.log('refreshing access token');
@@ -37,8 +37,14 @@ router.post('/refresh', (req, res) => {
     res.status(200).json({ accessToken: accTok, refreshToken: refTok });
   } catch (err) {
     console.log(err);
-    res.status(401).json({ message: err })
+    res.status(401).json({ message: err });
   }
+});
+
+router.post('/observe/:id', (req, res) => {
+  console.log('adding to observed');
+
+
 })
 
 module.exports = router;
