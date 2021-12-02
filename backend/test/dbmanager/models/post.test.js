@@ -72,16 +72,16 @@ describe('Post Model', () => {
         post.reactions.forEach(reaction => assert.ok(reaction.owner.username, 'reaction owner not populated'));
         done();
       })
-      .catch(err => done(err))
-  })
+      .catch(err => done(err));
+  });
 
   it('gets Posts with populated owners', done => {
     Post.find({})
       .then(posts => {
         posts.forEach(post => assert.ok(post.content.owner.username, 'content owner not populated'));
-        done()
+        done();
       })
       .catch(err => done(err));
-  })
+  });
 
 });

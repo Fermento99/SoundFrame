@@ -2,8 +2,8 @@ const User = require('../../../src/dbmanager/models/user');
 const { connect, disconnect } = require('../connection.test');
 
 describe('User Model', () => {
-  before(async() => await connect());
-  after(async() => {
+  before(async () => await connect());
+  after(async () => {
     await User.deleteMany({});
     await disconnect();
   });
@@ -13,7 +13,7 @@ describe('User Model', () => {
       username: 'Test',
       password: 'Pass',
       email: 'eex@ex.pl',
-    }
+    };
     User.create(userObj)
       .then(_ => done())
       .catch(err => done(err));
@@ -28,7 +28,7 @@ describe('User Model', () => {
 
     User.create(userObj)
       .then(_ => done('does anyway'))
-      .catch(_ => done())
+      .catch(_ => done());
   });
 
   it('doesn\'t allow duplpicate email', done => {
@@ -40,6 +40,6 @@ describe('User Model', () => {
 
     User.create(userObj)
       .then(_ => done('does anyway'))
-      .catch(_ => done())
+      .catch(_ => done());
   });
 });

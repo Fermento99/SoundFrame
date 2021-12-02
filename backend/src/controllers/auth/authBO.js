@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const User = require('../../dbmanager/models/user');
 
+
 /**
  * Registers new user in database
  * @param {object} userObj user data
@@ -25,6 +26,7 @@ const createUser = async (userObj) => {
   await User.create(user);
 };
 
+
 /**
  * Returrns user ID if email and password match
  * @param {object} userObj User login data
@@ -43,6 +45,7 @@ const loginUser = async (userObj) => {
     throw err;
   }
 };
+
 
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;

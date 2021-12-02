@@ -4,6 +4,7 @@ const { getTokenFromHeaders } = require('../../authoziration/headerAuth');
 const { verifyAccessToken } = require('../../authoziration/tokenAuth');
 const PostBO = require('./postBO');
 
+
 router.post('/new', (req, res) => {
   console.log('new post');
 
@@ -24,20 +25,6 @@ router.get('/get', (req, res) => {
   PostBO.getPosts(req.query)
     .then(data => res.status(200).json(data))
     .catch(err => res.status(422).json({ message: err }));
-});
-
-router.get('/get/feed', (req, res) => {
-  console.log('getting feed');
-
-  try {
-    const token = getTokenFromHeaders(req.headers);
-    const userId = verifyAccessToken(token);
-    PostBO.getFeed(userId)
-      .then(data => res.status(200).json(data))
-      .catch(err => res.status(422).json({ message: err }));
-  } catch (err) {
-    res.status(403).json({ message: err });
-  }
 });
 
 router.delete('/:id/delete', (req, res) => {
@@ -81,5 +68,6 @@ router.post('/:id/react', (req, res) => {
     res.status(403).json({ message: err });
   }
 });
+
 
 module.exports = router;

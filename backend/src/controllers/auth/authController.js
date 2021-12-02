@@ -3,6 +3,7 @@ const router = express.Router();
 const { createUser, loginUser } = require('./authBO');
 const { genAccessToken, genRefreshToken, verifyRefreshToken } = require('../../authoziration/tokenAuth');
 
+
 router.post('/register', (req, res) => {
   console.log('registering user');
 
@@ -41,10 +42,5 @@ router.post('/refresh', (req, res) => {
   }
 });
 
-router.post('/observe/:id', (req, res) => {
-  console.log('adding to observed');
-
-
-})
 
 module.exports = router;

@@ -32,4 +32,18 @@ router.post('/unobserve/:id', (req, res) => {
   }
 });
 
+router.get('/get/feed', (req, res) => {
+  console.log('getting feed');
+
+  try {
+    const token = getTokenFromHeaders(req.headers);
+    const userId = verifyAccessToken(token);
+    UserBO.getFeed(userId)
+      .then(data => res.status(200).json(data))
+      .catch(err => res.status(422).json({ message: err }));
+  } catch (err) {
+    res.status(403).json({ message: err });
+  }
+});
+
 module.exports = router;
