@@ -30,7 +30,7 @@ describe('Post Model', () => {
     const postObj = {
       content: {
         owner: exampleUserId,
-        spotifyID: '2GiJYvgVaD2HtM8GqD9EgQ',
+        spotifyId: '2GiJYvgVaD2HtM8GqD9EgQ',
         bgcolor: '#50FFEE',
         shape: 1,
         preferences: {},
@@ -38,14 +38,14 @@ describe('Post Model', () => {
       comments: [
         {
           owner: exampleUserId,
-          spotifyID: '2GiJYvgVaD2HtM8GqD9EgQ',
+          spotifyId: '2GiJYvgVaD2HtM8GqD9EgQ',
           bgcolor: '#50FFEE',
           shape: 1,
           preferences: {},
         },
         {
           owner: exampleUserId,
-          spotifyID: '2GiJYvgVaD2HtM8GqD9EgQ',
+          spotifyId: '2GiJYvgVaD2HtM8GqD9EgQ',
           bgcolor: '#50FFEE',
           shape: 1,
           preferences: {},

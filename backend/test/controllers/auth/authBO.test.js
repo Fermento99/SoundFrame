@@ -1,5 +1,5 @@
 const User = require('../../../src/dbmanager/models/user');
-const UserBO = require('../../../src/controllers/user/userBO');
+const UserBO = require('../../../src/controllers/auth/authBO');
 const { connect, disconnect } = require('../../dbmanager/connection.test');
 
 describe('UserBO', () => {

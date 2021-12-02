@@ -1,4 +1,4 @@
-const auth = require('../../src/authoziration/authorization');
+const auth = require('../../src/authoziration/tokenAuth');
 const { JsonWebTokenError } = require('jsonwebtoken');
 const assert = require('assert');
 
