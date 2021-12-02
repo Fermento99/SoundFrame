@@ -28,9 +28,9 @@ const unobserveUser = async (userId, observedId) => {
  * @returns posts of user's feed
  */
 const getFeed = async (userId) => {
-  const observed = await User.findById(userId, 'observed');
-  if (!observed) return [];
-  return await Post.find({ owner: { $in: observed.observed } });
+  const user = await User.findById(userId, 'observed');
+  if (!user || !user.observed) return [];
+  return await Post.find({ 'content.owner': { $in: user.observed } });
 };
 
 

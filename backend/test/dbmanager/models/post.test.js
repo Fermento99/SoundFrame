@@ -20,6 +20,7 @@ describe('Post Model', () => {
     };
     await User.create(exampleUser).then(user => exampleUserId = user._id);
   });
+  
   after(async () => {
     await Post.deleteMany({});
     await User.deleteMany({});

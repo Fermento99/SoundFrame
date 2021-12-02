@@ -1,5 +1,5 @@
 const User = require('../../../src/dbmanager/models/user');
-const UserBO = require('../../../src/controllers/auth/authBO');
+const AuthBO = require('../../../src/controllers/auth/authBO');
 const { connect, disconnect } = require('../../dbmanager/connection.test');
 
 describe('UserBO', () => {
@@ -17,7 +17,7 @@ describe('UserBO', () => {
       pass2: 'secretPassword123',
     };
 
-    UserBO.createUser(userObj)
+    AuthBO.createUser(userObj)
       .then(_ => done())
       .catch(err => done(err));
   });
@@ -28,7 +28,7 @@ describe('UserBO', () => {
       pass: 'secretPassword123',
     };
 
-    UserBO.loginUser(userObj)
+    AuthBO.loginUser(userObj)
       .then(userId => userId !== false ? done() : done('wrong user password'))
       .catch(err => done(err));
   });
@@ -39,7 +39,7 @@ describe('UserBO', () => {
       pass: 'butterisnopassword',
     };
 
-    UserBO.loginUser(userObj)
+    AuthBO.loginUser(userObj)
       .then(userId => userId !== false ? done('logged anyway') : done())
       .catch(_ => done());
   });

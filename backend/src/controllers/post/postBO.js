@@ -16,9 +16,13 @@ const PostHelper = require('./postHelper');
 const getPosts = async (preferences) => {
   const { id, userId, shape, bgcolor, skip, limit } = preferences;
 
-  if (id) return await Post.findById(preferences.id);
+  if (id) { return await Post.findById(preferences.id); }
 
-  return await Post.find({ userId, shape, bgcolor }, '', { skip, limit });
+  if (userId || shape || bgcolor) {
+    return await Post.find({ 'content.owner': userId, 'content.shape': shape, 'content.bgcolor': bgcolor }, '', { skip, limit });
+  }
+
+  return await Post.find({}, '', { skip, limit });
 };
 
 
@@ -79,7 +83,7 @@ const addReaction = async (postId, reaction, userId) => {
   const post = await Post.findById(postId, 'reactions');
   if (!post) throw 'Post not found';
 
-  if (post.reactions.find(reaction => reaction.owner._id.toString() === userId)) {
+  if (post.reactions.find(reaction => reaction.owner._id.equals(userId))) {
     await Post.findOneAndUpdate({ _id: postId, 'reactions.owner': userId }, { $set: { 'reactions.$.type': reaction } });
   } else {
     await Post.findByIdAndUpdate(postId, { $push: { 'reactions': reactionObj } });
