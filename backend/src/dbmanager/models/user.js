@@ -10,7 +10,7 @@ const userShema = new mongoose.Schema({
   email: { type: String, required: true, match: /^\S+@\S+\.\S+/, unique: true },
   password: { type: String, required: true },
   avatar: avatarSchema,
-  observed: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', }] }
+  observed: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] }
 });
 
 module.exports = mongoose.model('User', userShema);
