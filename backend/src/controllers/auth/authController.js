@@ -2,25 +2,34 @@ const express = require('express');
 const router = express.Router();
 const { createUser, loginUser } = require('./authBO');
 const { genAccessToken, genRefreshToken, verifyRefreshToken } = require('../../authoziration/tokenAuth');
+const authHelper = require('./authHelper');
 
 
 router.post('/register', (req, res) => {
   console.log('registering user');
 
-  createUser(req.body.user)
-    .then(_ => res.status(200).send())
-    .catch(err => res.status(400).json({ message: err }));
+  createUser(req.body.user).then(user => {
+    if (user._id) {
+      const userData = authHelper(user);
+      console.log(userData);
+      res.status(200).json({ user: userData, accessToken: genAccessToken(user._id), refreshToken: genRefreshToken(user._id) });
+    } else {
+      res.status(400).json({ message: user });
+    }
+  }).catch(err => res.status(400).json({ message: err }));
 });
 
 router.post('/login', (req, res) => {
   console.log('user loging in');
-
+  console.log(req.body)
   loginUser(req.body.user)
     .then(user => {
-      userData = { id: user._id, email: user.email, username: user.username, avatar: user.avatar };
-      user
-        ? res.status(200).json({ user: userData, accessToken: genAccessToken(user._id), refreshToken: genRefreshToken(user._id) })
-        : res.status(401).json({ message: 'wrong username or password' });
+      if (user) {
+        const userData = authHelper(user);
+        res.status(200).json({ user: userData, accessToken: genAccessToken(user._id), refreshToken: genRefreshToken(user._id) });
+      } else {
+        res.status(401).json({ message: 'wrong username or password' });
+      }
     })
     .catch(err => {
       console.log(err);

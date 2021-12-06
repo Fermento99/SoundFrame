@@ -23,7 +23,19 @@ const createUser = async (userObj) => {
     avatar: userObj.avatar,
   };
   await User.syncIndexes();
-  await User.create(user);
+  try {
+    return await User.create(user);
+  } catch (err) {
+    if (err.code === 11000) {
+      const dup = await User.findOne({ username: user.username });
+      console.log(dup)
+      if (dup) { return 'user with this username already exists'; }
+      return 'user with this email already exists';
+    } else {
+      return err;
+    }
+  }
+
 };
 
 
@@ -40,7 +52,7 @@ const loginUser = async (userObj) => {
   try {
     return bcrypt.compareSync(userObj.pass, user.password)
       ? user
-      : false
+      : false;
   } catch (err) {
     throw err;
   }

@@ -1,10 +1,4 @@
 
-class PostHelper {
-  owner;
-  spotifyId;
-  shape;
-  bgcolor;
-  preference;
-}
+const postHelper = ({ owner, spotifyId, shape, bgcolor, preference, }) => ({ owner, spotifyId, shape, bgcolor, preference, });
 
-module.exports = PostHelper;
+module.exports = postHelper;

@@ -11,4 +11,4 @@ app.get('/', (req, res) => {
   res.send('server running');
 })
 
-app.listen(3001, () => console.log('listening on 3001...'))
+app.listen(3001, '0.0.0.0', () => console.log('listening on 3001...'))

@@ -1,5 +1,5 @@
 const Post = require('../../dbmanager/models/post');
-const PostHelper = require('./postHelper');
+const postHelper = require('./postHelper');
 
 
 /**
@@ -34,8 +34,7 @@ const getPosts = async (preferences) => {
 const createPost = async (post, userId) => {
   if (!post) throw 'Empty post';
 
-  const content = new PostHelper();
-  Object.assign(content, post);
+  const content = postHelper(post);
   content.owner = userId;
 
   await Post.create({ content });
@@ -60,8 +59,7 @@ const deletePost = async (postId, userId) => {
  * @param {string} userId comment owner id
  */
 const addComment = async (postId, comment, userId) => {
-  const commentObj = new PostHelper();
-  Object.assign(commentObj, comment);
+  const commentObj = postHelper(comment);
   commentObj.owner = userId;
 
   const updated = await Post.findByIdAndUpdate(postId, { $push: { 'comments': commentObj } });

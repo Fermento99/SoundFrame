@@ -16,10 +16,10 @@ const getData = async (url, token = '') => {
   });
 
   return res.json();
-}
+};
 
 const postData = async (url, data, token = '') => {
-  const res =  await fetch(url, {
+  const res = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -31,6 +31,22 @@ const postData = async (url, data, token = '') => {
   return res.json();
 };
 
-module.exports.createUrl = createUrl;
-module.exports.getData = getData;
-module.exports.postData = postData;
+const deleteData = async (url, data, token = '') => {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+  return res.json();
+};
+
+export {
+  createUrl,
+  getData,
+  postData,
+  deleteData
+};
