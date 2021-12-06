@@ -28,7 +28,7 @@ const createUser = async (userObj) => {
   } catch (err) {
     if (err.code === 11000) {
       const dup = await User.findOne({ username: user.username });
-      console.log(dup)
+
       if (dup) { return 'user with this username already exists'; }
       return 'user with this email already exists';
     } else {

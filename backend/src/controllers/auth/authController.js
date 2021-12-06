@@ -11,7 +11,6 @@ router.post('/register', (req, res) => {
   createUser(req.body.user).then(user => {
     if (user._id) {
       const userData = authHelper(user);
-      console.log(userData);
       res.status(200).json({ user: userData, accessToken: genAccessToken(user._id), refreshToken: genRefreshToken(user._id) });
     } else {
       res.status(400).json({ message: user });
@@ -21,7 +20,7 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
   console.log('user loging in');
-  console.log(req.body)
+
   loginUser(req.body.user)
     .then(user => {
       if (user) {
