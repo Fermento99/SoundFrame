@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/feed">
           <FeedPage />
         </Route>
-        <Route path="/post">
+        <Route path="/post/:id">
           <PostPage />
         </Route>
         <Route path="/user">

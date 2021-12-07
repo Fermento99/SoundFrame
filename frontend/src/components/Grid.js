@@ -9,6 +9,7 @@ const grid = styled.div`
 
 const Row = styled(grid)`
   flex-direction: row;
+  flex-wrap: ${props => props.wrap ? 'wrap' : 'no-wrap'};
 `;
 
 const Column = styled(grid)`

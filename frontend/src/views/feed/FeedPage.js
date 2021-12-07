@@ -20,7 +20,7 @@ export default function FeedPage() {
   return (
     <Main>
       <TopBar />
-      {posts.map(post => <Post post={post.content} />)}
+      {posts.map(post => <Post post={post.content} id={post._id} />)}
     </Main>
   );
 }
