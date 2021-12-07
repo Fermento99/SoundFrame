@@ -4,11 +4,12 @@ const setItem = (key, value) => {
 };
 
 const getItem = (key) => {
-  JSON.parse(sessionStorage.getItem(key));
+  return JSON.parse(sessionStorage.getItem(key));
 };
 
 const clearKey = (key) => {
   sessionStorage.removeItem(key);
+  console.log(sessionStorage[key])
 };
 
 

@@ -8,7 +8,7 @@ import AvatarCreator from './components/AvatarCreator';
 import { createUrl, postData } from '../../utils/fetcher';
 import { login } from '../../utils/router';
 
-export default function Register() {
+export default function RegisterPage() {
   const [errorMsg, setErr] = useState('');
   const email = useRef('');
   const username = useRef('');

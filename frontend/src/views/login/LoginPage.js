@@ -5,11 +5,11 @@ import Container from '../../components/Container';
 import Error from '../../components/Error';
 import Input from '../../components/Input';
 import { createUrl, postData } from '../../utils/fetcher';
-import { login } from './../../utils/router';
+import { login } from '../../utils/router';
 
 
 
-export default function Login() {
+export default function LoginPage() {
   const [errorMsg, setErr] = useState('');
   const email = useRef('');
   const pass = useRef('');

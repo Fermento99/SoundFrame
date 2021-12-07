@@ -1,0 +1,26 @@
+.teal {
+  background-color: teal;
+  color: #fff !important;
+}
+
+.teal a {
+  color: #fff !important;
+}
+
+.olive {
+  background-color: olive;
+  color:#fff !important;
+}
+
+.olive a {
+  color: #fff !important;
+}
+
+.powderBlue {
+  background-color: #BFEDEF;
+  color:#000 !important;
+}
+
+.powderBlue a {
+  color: #000 !important;
+}

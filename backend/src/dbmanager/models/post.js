@@ -16,8 +16,8 @@ const reactionSchema = new mongoose.Schema({
 const rawPostSchema = new mongoose.Schema({
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   spotifyId: { type: String, required: true, },
-  bgcolor: { type: String, required: true, match: /^#[A-F\d]{6}$/i },
-  shape: { type: Number, required: true },
+  bgcolor: { type: String, required: true },
+  shape: { type: String, required: true },
   preferences: preferencesSchema,
 });
 

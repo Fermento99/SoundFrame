@@ -22,7 +22,7 @@ const getPosts = async (preferences) => {
     return await Post.find({ 'content.owner': userId, 'content.shape': shape, 'content.bgcolor': bgcolor }, '', { skip, limit });
   }
 
-  return await Post.find({}, '', { skip, limit });
+  return await Post.find({}, '', { skip, limit}).sort({_id:-1});
 };
 
 

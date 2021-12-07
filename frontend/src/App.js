@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import GlobalStyle from './GlobalStyle';
-import Creator from './views/creator/Creator';
-import Feed from './views/feed/Feed';
-import Home from './views/home/Home';
-import Login from './views/login/Login';
-import Post from './views/post/Post';
-import Register from './views/register/Register';
-import User from './views/user/User';
+import CreatorPage from './views/creator/CreatorPage';
+import FeedPage from './views/feed/FeedPage';
+import HomePage from './views/home/HomePage';
+import LoginPage from './views/login/LoginPage';
+import PostPage from './views/post/PostPage';
+import RegisterPage from './views/register/RegisterPage';
+import UserPage from './views/user/UserPage';
 
 export default function App() {
   return (
@@ -15,28 +15,28 @@ export default function App() {
       <GlobalStyle />
       <Switch>
         <Route path="/creator">
-          <Creator />
+          <CreatorPage />
         </Route>
         <Route path="/feed">
-          <Feed />
+          <FeedPage />
         </Route>
         <Route path="/post">
-          <Post />
+          <PostPage />
         </Route>
         <Route path="/user">
-          <User />
+          <UserPage />
         </Route>
         <Route path="/login">
-          <Login />
+          <LoginPage />
         </Route>
         <Route path="/register">
-          <Register />
+          <RegisterPage />
         </Route>
         <Route path="/home">
-          <Home />
+          <HomePage />
         </Route>
         <Route path="/">
-          <Home />
+          <HomePage />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -1,4 +1,4 @@
 
-const postHelper = ({ owner, spotifyId, shape, bgcolor, preference, }) => ({ owner, spotifyId, shape, bgcolor, preference, });
+const postHelper = ({ owner, spotifyId, shape, bgcolor, preferences }) => ({ owner, spotifyId, shape, bgcolor, preferences });
 
 module.exports = postHelper;

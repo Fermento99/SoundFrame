@@ -2,8 +2,15 @@
 const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS;
 
 
-const createUrl = (mod, endpoint) => {
-  return `${SERVER_ADDRESS}/${mod}/${endpoint}`;
+const createUrl = (mod, endpoint, query) => {
+  const params = [];
+  for (let key in query) {
+    params.push(`${key}=${query[key]}`);
+  }
+  const queryString = params
+    ? '?' + params.join('&')
+    : '';
+  return `${SERVER_ADDRESS}/${mod}/${endpoint}${queryString}`;
 };
 
 const getData = async (url, token = '') => {
@@ -15,7 +22,7 @@ const getData = async (url, token = '') => {
     },
   });
 
-  return res.json();
+  return await res.json();
 };
 
 const postData = async (url, data, token = '') => {
@@ -27,8 +34,7 @@ const postData = async (url, data, token = '') => {
     },
     body: JSON.stringify(data),
   });
-
-  return res.json();
+  if (res.status !== 204) { return await res.json(); }
 };
 
 const deleteData = async (url, data, token = '') => {
@@ -41,7 +47,7 @@ const deleteData = async (url, data, token = '') => {
     body: JSON.stringify(data),
   });
 
-  return res.json();
+  return await res.json();
 };
 
 export {

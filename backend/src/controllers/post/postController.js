@@ -23,7 +23,10 @@ router.get('/get', (req, res) => {
   console.log('getting posts');
 
   PostBO.getPosts(req.query)
-    .then(data => res.status(200).json(data))
+    .then(data => {
+      console.log(data);
+      res.status(200).json(data);
+    })
     .catch(err => res.status(422).json({ message: err }));
 });
 

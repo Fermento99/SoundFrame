@@ -1,0 +1,26 @@
+.circle{
+  clip-path: circle(50%);
+  padding: 1.5em 3em;
+}
+
+.square{
+  padding: 2em 1em;
+}
+
+.triangle{
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  padding: 2.5em 2em .1em 2em;
+}
+
+.dimond{
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  padding: 1em 2em;
+}
+
+.pentagon{
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+.hexagon{
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}

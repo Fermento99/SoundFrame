@@ -4,6 +4,7 @@ import Avatar from '../../../components/Avatar';
 import { BtnLight } from '../../../components/Button';
 import { Field } from '../../../components/Input';
 import { Column, Row } from '../../../components/Grid';
+import Label from '../../../components/Label';
 
 const Input = styled(Field)`
   width: unset;
@@ -23,16 +24,12 @@ const ColorPicker = styled(Field).attrs({ type: 'color' })`
   background-color: ${props => props.value};
 `;
 
-const Label = styled.p`
-  margin: 0 1.2em 0 0;
-`
-
 const BtnAmount = styled(BtnLight)`
   width: 25px;
   height: 25px;
   padding: 0;
   margin: .3em .3em;
-`
+`;
 
 const inputChange = (e, setter) => {
   setter(e.target.value);

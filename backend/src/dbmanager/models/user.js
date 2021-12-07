@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const avatarSchema = new mongoose.Schema({
   front: { type: String, minlength: 1, maxlength: 1, match: /[a-z0-9]/i },
-  forntColor: { type: String, match: /^#[A-F\d]{6}/ },
+  color: { type: String, match: /^#[A-F\d]{6}/i },
   colors: { type: [{ type: String, required: true, match: /^#[A-F\d]{6}/i }], maxlength: 3, minlength: 1, required: true },
 });
 

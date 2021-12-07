@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from '../../components/Avatar';
 
-export default function Home() {
+export default function HomePage() {
   const colors = [
     '#FF0000',
     '#00FF00',

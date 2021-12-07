@@ -1,10 +1,9 @@
 import React from 'react'
 
-
-export default function Feed() {
+export default function UserPage() {
   return (
     <div>
-      Feed
+      User
     </div>
   )
 }
