@@ -1,5 +1,4 @@
 
-
 export default class EnumColors {
   static REDISH = {
     name: 'Red-ish',
@@ -55,5 +54,15 @@ export default class EnumColors {
       { name: 'Silver', class: 'silver' },
       { name: 'DavysGrey', class: 'davysGrey' },
     ]
+  };
+
+  static genOptions(disabled = true) {
+    const options = [(<option key="default" isDisabled={disabled} value="defaultValue">-- select --</option>)];
+    for (let key in this) {
+      options.push((<optgroup key={key} label={this[key].name}>
+        {this[key].colors.map(color => (<option key={color.name} value={color.class} className={color.class}>{color.name}</option>))}
+      </optgroup>));
+    }
+    return options;
   };
 }

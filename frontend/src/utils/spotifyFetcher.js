@@ -27,7 +27,6 @@ const getToken = async () => {
 };
 
 const getMeta = async (id) => {
-  console.log(id);
   if (!id) {
     return {
       album: '',
@@ -65,7 +64,6 @@ const getMeta = async (id) => {
   }
 
   const data = await res.json();
-  console.log(data.external_urls.spotify);
   return dataPicker(data);
 };
 

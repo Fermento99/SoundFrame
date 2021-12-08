@@ -25,5 +25,13 @@ export default class EnumShapes {
     name: 'Hexagon',
     class: 'hexagon'
   };
+
+  static genOptions(disabled = true) {
+    const options = [(<option key="default" isDisabled={disabled} value="defaultValue">-- select --</option>)];
+    for (let key in EnumShapes) {
+      options.push((<option key={key} value={EnumShapes[key].class}>{EnumShapes[key].name}</option>));
+    }
+    return options;
+  };
 }
 

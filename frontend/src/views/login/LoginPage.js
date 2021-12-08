@@ -18,8 +18,6 @@ export default function LoginPage() {
 
   const click = async () => {
     setErr('');
-    console.log(email.current.value);
-    console.log(pass.current.value);
     const response = await postData(url, { user: { email: email.current.value, pass: pass.current.value } });
 
     if (response.message) {

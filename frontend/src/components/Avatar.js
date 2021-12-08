@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import styled from 'styled-components';
 
 const getLinearGradient = (props) => {
@@ -31,16 +32,14 @@ const AvatarWrapper = styled.div`
 `;
 
 export default function Avatar({ size, colors, front, color, userId }) {
-  const click = userId 
-    ? () => {
-    //show user Site
-    console.log(userId);
-  } 
-    : () => { };
+  const history = useHistory();
+  const click = userId
+    ? () => { history.push('/user/' + userId); }
+    : () => { console.log('hah')};
 
   return (
-    <AvatarWrapper size={size} colors={colors} color={color} onClick={click}>
+    <AvatarWrapper size={size} colors={colors} color={color} onClick={e => { e.stopPropagation(); click(); }}>
       <p>{front}</p>
-    </AvatarWrapper>
+    </AvatarWrapper >
   );
 }

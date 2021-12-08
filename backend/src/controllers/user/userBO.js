@@ -27,13 +27,36 @@ const unobserveUser = async (userId, observedId) => {
  * @param {string} userId user id
  * @returns posts of user's feed
  */
-const getFeed = async (userId) => {
+const getFeed = async (userId, preferences) => {
+  const { shape, bgcolor, skip, limit } = preferences;
   const user = await User.findById(userId, 'observed');
   if (!user || !user.observed) return [];
-  return await Post.find({ 'content.owner': { $in: user.observed } });
+
+  const filter = { 'content.owner': { $in: user.observed } };
+  if (shape || bgcolor) {
+    if (shape) { filter['content.shape'] = shape; }
+    if (bgcolor) { filter['content.bgcolor'] = bgcolor; }
+    
+    return await Post.find(filter, '', { skip, limit }).sort({ _id: -1 });
+  }
+  return await Post.find(filter).sort({ _id: -1 });
 };
+
+
+/**
+ * Gets user data from db
+ * @param {string} userId user id
+ * @returns user sodial data
+ */
+const getData = async (userId) => {
+  const user = await User.findById(userId, 'username avatar');
+  const posts = await Post.find({ 'content.owner': userId });
+  return { user, posts };
+};
+
 
 
 module.exports.observeUser = observeUser;
 module.exports.unobserveUser = unobserveUser;
 module.exports.getFeed = getFeed;
+module.exports.getData = getData;

@@ -35,25 +35,6 @@ const publish = async (post, commentedId, history) => {
   }
 };
 
-const genShapesOptions = () => {
-  const options = [(<option key="default" disabled value="defaultValue">-- select --</option>)];
-  for (let key in EnumShapes) {
-    options.push((<option key={key} value={EnumShapes[key].class}>{EnumShapes[key].name}</option>));
-  }
-  return options;
-};
-
-const genColorOptions = () => {
-  const options = [(<option key="default" disabled value="defaultValue">-- select --</option>)];
-  for (let key in EnumColors) {
-    console.log(EnumShapes[key]);
-    options.push((<optgroup key={key} label={EnumColors[key].name}>
-      {EnumColors[key].colors.map(color => (<option key={color.name} value={color.class} className={color.class}>{color.name}</option>))}
-    </optgroup>));
-  }
-  return options;
-};
-
 const genSuggetions = suggestions => {
   const options = [];
   suggestions.forEach(track => {
@@ -85,7 +66,6 @@ export default function CreatorPage() {
   const { commentedId } = useParams();
   const history = useHistory();
 
-  console.log(id);
   const post = {
     bgcolor: color,
     shape: shape,
@@ -94,8 +74,6 @@ export default function CreatorPage() {
     owner: getItem('user_SF'),
   };
 
-  console.log(preferences);
-
   return (
     <div>
       <Column>
@@ -103,11 +81,11 @@ export default function CreatorPage() {
         <Row>
           <Label>Shape: </Label>
           <Select onChange={e => setShape(e.target.value)} width="12" value={shape}>
-            {genShapesOptions()}
+            {EnumShapes.genOptions()}
           </Select>
           <Label>Color: </Label>
           <Select onChange={e => setColor(e.target.value)} width="12" value={color}>
-            {genColorOptions()}
+            {EnumColors.genOptions()}
           </Select>
         </Row>
         <Row>
@@ -119,7 +97,7 @@ export default function CreatorPage() {
         </Select>
         <Row>
           <Label>Show Title</Label>
-          <input type="checkbox" checked={preferences.showTitle} onChange={e => { preferences.showTitle = e.target.checked; setPref({ ...preferences }); console.log(e.target); }} />
+          <input type="checkbox" checked={preferences.showTitle} onChange={e => { preferences.showTitle = e.target.checked; setPref({ ...preferences }) }} />
         </Row>
         <Row>
           <Label>Show Cover</Label>

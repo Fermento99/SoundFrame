@@ -9,7 +9,6 @@ const getItem = (key) => {
 
 const clearKey = (key) => {
   sessionStorage.removeItem(key);
-  console.log(sessionStorage[key])
 };
 
 

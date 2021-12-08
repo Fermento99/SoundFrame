@@ -19,10 +19,15 @@ const getPosts = async (preferences) => {
   if (id) { return await Post.findById(preferences.id); }
 
   if (userId || shape || bgcolor) {
-    return await Post.find({ 'content.owner': userId, 'content.shape': shape, 'content.bgcolor': bgcolor }, '', { skip, limit });
+    filter = {};
+    if(userId) {filter['content.owner'] = userId;}
+    if(shape) {filter['content.shape'] = shape;}
+    if(bgcolor) {filter['content.bgcolor'] = bgcolor;}
+
+    return await Post.find(filter, '', { skip, limit }).sort({ _id: -1 });
   }
 
-  return await Post.find({}, '', { skip, limit}).sort({_id:-1});
+  return await Post.find({}, '', { skip, limit }).sort({ _id: -1 });
 };
 
 

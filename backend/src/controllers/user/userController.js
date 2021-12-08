@@ -32,18 +32,27 @@ router.post('/unobserve/:id', (req, res) => {
   }
 });
 
-router.get('/get/feed', (req, res) => {
+router.get('/getFeed', (req, res) => {
   console.log('getting feed');
 
   try {
     const token = getTokenFromHeaders(req.headers);
     const userId = verifyAccessToken(token);
-    UserBO.getFeed(userId)
+    UserBO.getFeed(userId, req.query)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(422).json({ message: err }));
   } catch (err) {
     res.status(403).json({ message: err });
   }
+});
+
+router.get('/get/:id', (req, res) => {
+  console.log('getting user data');
+
+  UserBO.getData(req.params.id).then(data => {
+    if (data) { res.status(200).json(data); }
+    else { res.status(404).send(); }
+  });
 });
 
 module.exports = router;

@@ -46,7 +46,7 @@ export default function NavBar() {
       <Bar>
         <Row>
           <AvatarBackground>
-            <Avatar size="30" {...loggedUser.avatar} />
+            <Avatar size="30" {...loggedUser.avatar} userId={loggedUser._id} />
           </AvatarBackground>
           <Field width="15em" ref={userRef} />
           <BtnDark>SEARCH USER</BtnDark>

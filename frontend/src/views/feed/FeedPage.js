@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import NavBar from '../../components/NavBar';
 import Post from '../../components/post/Post';
 import { createUrl, getData } from '../../utils/fetcher';
+import { getItem } from '../../utils/storageManager';
+import TopBar from './components/TopBar';
 
 const Main = styled.div`
   padding-top: 4em;
@@ -13,14 +15,32 @@ const Main = styled.div`
 `;
 
 export default function FeedPage() {
-  const url = createUrl('post', 'get');
-  const [posts, setPosts] = useState([]);
-  if (posts.length === 0) { getData(url).then(posts => setPosts(posts)); }
-  console.log(posts);
+  const [filter, setFilter] = useState({ shape: 'defaultValue', color: 'defaultValue', feed: true });
+  const [loaded, setLoaded] = useState(false);
+  const urlFilter = {};
+  if (filter.shape !== 'defaultValue') { urlFilter.shape = filter.shape; }
+  if (filter.color !== 'defaultValue') { urlFilter.bgcolor = filter.color; }
+  console.log(urlFilter)
+
+  const url = filter.feed ? createUrl('user', 'getFeed', urlFilter) : createUrl('post', 'get', urlFilter);
+  const [posts, setPosts] = useState(null);
+  console.log(url)
+
+
+  if (!loaded) {
+    getData(url, getItem('accessToken_SF')).then(posts => {
+      setPosts(posts);
+      setLoaded(true);
+    });
+    return (<Main>
+      <NavBar />
+    </Main>);
+  }
   return (
     <Main>
       <NavBar />
-      {posts.map(post => <Post post={post.content} id={post._id} />)}
+      <TopBar filter={filter} setter={(obj) => { setFilter(obj); setLoaded(false); }} />
+      {posts.map(post => <Post post={post.content} id={post._id} key={post._id} />)}
     </Main>
   );
 }

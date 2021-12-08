@@ -18,7 +18,7 @@ const Btn = styled.a`
 
 export default function BtnCTA({ url, size }) {
   return (
-    <Btn size={size} href={url} target="_blank">
+    <Btn size={size} href={url} target="_blank" onClick={e => e.stopPropagation()}>
       PLAY
     </Btn>
   );
