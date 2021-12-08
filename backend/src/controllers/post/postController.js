@@ -24,7 +24,6 @@ router.get('/get', (req, res) => {
 
   PostBO.getPosts(req.query)
     .then(data => {
-      console.log(data);
       res.status(200).json(data);
     })
     .catch(err => res.status(422).json({ message: err }));

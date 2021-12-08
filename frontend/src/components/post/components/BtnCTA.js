@@ -9,6 +9,7 @@ const getResize = (props) => {
 const Btn = styled.a`
   font-size: calc(1em * ${getResize});
   text-decoration: none;
+  color: inherit;
   padding: .2em .5em;
   border: solid 1px;
   border-radius: 12px;

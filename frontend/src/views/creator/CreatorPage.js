@@ -11,6 +11,8 @@ import Label from '../../components/Label';
 import { BtnDark } from '../../components/Button';
 import { createUrl, postData } from '../../utils/fetcher';
 import styled from 'styled-components';
+import { useParams, useHistory } from 'react-router';
+import NavBar from '../../components/NavBar';
 
 
 const PostPH = styled(Column)`
@@ -20,15 +22,34 @@ const PostPH = styled(Column)`
   border-radius: 8px;
 `;
 
-const publish = async (post) => {
-  const url = createUrl('post', 'new');
-  await postData(url, { post }, getItem('accessToken_SF'));
+const publish = async (post, commentedId, history) => {
+  const token = getItem('accessToken_SF');
+  if (commentedId) {
+    const url = createUrl('post', `${commentedId}/comment`);
+    await postData(url, { comment: post }, token);
+    history.push('/post/' + commentedId);
+  } else {
+    const url = createUrl('post', 'new');
+    await postData(url, { post }, token);
+    history.push('/feed');
+  }
 };
 
-const genOptions = optionClass => {
+const genShapesOptions = () => {
   const options = [(<option key="default" disabled value="defaultValue">-- select --</option>)];
-  for (let key in optionClass) {
-    options.push((<option key={key} value={optionClass[key].class}>{optionClass[key].name}</option>));
+  for (let key in EnumShapes) {
+    options.push((<option key={key} value={EnumShapes[key].class}>{EnumShapes[key].name}</option>));
+  }
+  return options;
+};
+
+const genColorOptions = () => {
+  const options = [(<option key="default" disabled value="defaultValue">-- select --</option>)];
+  for (let key in EnumColors) {
+    console.log(EnumShapes[key]);
+    options.push((<optgroup key={key} label={EnumColors[key].name}>
+      {EnumColors[key].colors.map(color => (<option key={color.name} value={color.class} className={color.class}>{color.name}</option>))}
+    </optgroup>));
   }
   return options;
 };
@@ -61,6 +82,8 @@ export default function CreatorPage() {
   const [id, setId] = useState('');
   const [preferences, setPref] = useState({ showArtist: true, showTitle: true, showCover: true });
   const [suggestions, setSug] = useState([]);
+  const { commentedId } = useParams();
+  const history = useHistory();
 
   console.log(id);
   const post = {
@@ -76,14 +99,15 @@ export default function CreatorPage() {
   return (
     <div>
       <Column>
+        <NavBar />
         <Row>
           <Label>Shape: </Label>
           <Select onChange={e => setShape(e.target.value)} width="12" value={shape}>
-            {genOptions(EnumShapes)}
+            {genShapesOptions()}
           </Select>
           <Label>Color: </Label>
           <Select onChange={e => setColor(e.target.value)} width="12" value={color}>
-            {genOptions(EnumColors)}
+            {genColorOptions()}
           </Select>
         </Row>
         <Row>
@@ -108,7 +132,7 @@ export default function CreatorPage() {
         <PostPH>
           {color !== 'defaultValue' && shape !== 'defaultValue' && <Post post={post} previewId={id} />}
         </PostPH>
-        <BtnDark onClick={() => publish(post)}>PUBLISH</BtnDark>
+        <BtnDark onClick={() => publish(post, commentedId, history)}>PUBLISH</BtnDark>
       </Column>
     </div >
   );

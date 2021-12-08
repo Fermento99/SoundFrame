@@ -1,26 +1,99 @@
-.teal {
-  background-color: teal;
-  color: #fff !important;
+.redCrayola {
+  color: #fff;
+  background-color: #E93A4B;
 }
 
-.teal a {
-  color: #fff !important;
+.citrine {
+  color: #000;
+  background-color: #E9D83A;
 }
 
-.olive {
-  background-color: olive;
-  color:#fff !important;
+.erin {
+  color: #000;
+  background-color: #4BE93A
 }
 
-.olive a {
-  color: #fff !important;
+.turquoise{
+  color: #000;
+  background-color: #3AE9D8;
 }
 
-.powderBlue {
-  background-color: #BFEDEF;
-  color:#000 !important;
+.blueRYB {
+  color: #fff;
+  background-color: #3A4BE9;
 }
 
-.powderBlue a {
-  color: #000 !important;
+.phlox {
+  color: #fff;
+  background-color: #D83AE9;
+}
+
+.ticklePink {
+  color: #000;
+  background-color: #ff7ea4;
+}
+
+.orangeCrayola {
+  color: #000;
+  background-color: #ffd87e;
+}
+
+.mintGreen {
+  color: #000;
+  background-color: #a4ff7e;
+}
+
+.aquamarine {
+  color: #000;
+  background-color: #7effd8;
+}
+
+.cornflowerBlue {
+  color: #000;
+  background-color: #7ea4ff;
+}
+
+.heliotrope {
+  color: #000;
+  background-color: #d87eff;
+}
+
+.rubineRed {
+  color: #fff;
+  background-color: #cf0056;
+}
+
+.chocolateWeb {
+  color: #fff;
+  background-color: #cf6000;
+}
+
+.greenRYB {
+  color: #fff;
+  background-color: #73b313;
+}
+
+.mediumSeaGreen {
+  color: #fff;
+  background-color: #17b862;
+}
+
+.sapphire {
+  color: #fff;
+  background-color: #1757b8;
+}
+
+.violteRYB {
+  color: #fff;
+  background-color: #7b13b3;
+}
+
+.silver {
+  color:#000;
+  background-color: #C2C2C2;
+}
+
+.davysGrey {
+  color: #fff;
+  background-color: #474747;
 }

@@ -8,10 +8,11 @@ const login = (history, userData) => {
   history.push('feed');
 };
 
-const logout = () => {
+const logout = (history) => {
   clearKey('user_SF');
   clearKey('accessToken_SF');
   clearKey('refreshToken_SF');
+  history.push('/home');
 }
 
 export { login, logout };

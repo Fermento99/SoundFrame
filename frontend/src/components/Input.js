@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Field = styled.input`
-  width: 100%;
+  width: ${props => props.width || 100 + '%'};
   padding: .4em .9em;
   margin: .2em .5em;
   border-radius: 8px;

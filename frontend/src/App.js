@@ -14,6 +14,9 @@ export default function App() {
     <BrowserRouter>
       <GlobalStyle />
       <Switch>
+      <Route path="/creator/:commentedId">
+          <CreatorPage />
+        </Route>
         <Route path="/creator">
           <CreatorPage />
         </Route>
@@ -23,7 +26,7 @@ export default function App() {
         <Route path="/post/:id">
           <PostPage />
         </Route>
-        <Route path="/user">
+        <Route path="/user/:id">
           <UserPage />
         </Route>
         <Route path="/login">

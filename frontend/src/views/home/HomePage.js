@@ -1,21 +1,17 @@
 import React from 'react';
-import Avatar from '../../components/Avatar';
+import { useHistory } from 'react-router';
+import { BtnLight, BtnDark } from '../../components/Button';
+import { Column } from '../../components/Grid';
 
 export default function HomePage() {
-  const colors = [
-    '#FF0000',
-    '#00FF00',
-    '#0000FF'
-  ];
-
+  const history = useHistory();
   return (
-    <div>
-      <Avatar
-        size="70"
-        color="#FF00FF"
-        colors={colors}
-        front="A"
-        userId="1" />
-    </div>
+    <Column>
+      <h3>Welcome to </h3>
+      <br />
+      <h1>Sound Frame</h1>
+      <BtnDark onClick={() => history.push('/login')}>LOGIN</BtnDark>
+      <BtnLight onClick={() => history.push('/register')}>REGISTER</BtnLight>
+    </Column>
   );
 }

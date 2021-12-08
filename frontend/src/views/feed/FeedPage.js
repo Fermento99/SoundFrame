@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import NavBar from '../../components/NavBar';
 import Post from '../../components/post/Post';
 import { createUrl, getData } from '../../utils/fetcher';
-import TopBar from './components/TopBar';
 
 const Main = styled.div`
   padding-top: 4em;
@@ -19,7 +19,7 @@ export default function FeedPage() {
   console.log(posts);
   return (
     <Main>
-      <TopBar />
+      <NavBar />
       {posts.map(post => <Post post={post.content} id={post._id} />)}
     </Main>
   );

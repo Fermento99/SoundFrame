@@ -51,8 +51,6 @@ export default function Post({ size, post, previewId, id }) {
   const [data, setData] = useState(null);
   const history = useHistory();
 
-  if (previewId && previewId !== data.id) { getMeta(post.spotifyId).then(data => setData(data)); }
-
   if (data === null) {
     console.log('post id', post.spotifyId);
     getMeta(post.spotifyId).then(data => setData(data));
@@ -61,13 +59,14 @@ export default function Post({ size, post, previewId, id }) {
       </PostWrapper>
     );
   } else {
+    if (previewId && previewId !== data.id) { getMeta(post.spotifyId).then(data => setData(data)); }
     console.log(post);
 
     if (!post.preferences) { post.preferences = { showCover: true, showTitle: true, showArtist: true }; }
     return (
       <PostWrapper size={size} className={className} onClick={() => showPost(id, history)}>
         <Column >
-          <Avatar size={40 * size} {...post.owner.avatar} />
+          <Avatar size={40 * (size || 1)} {...post.owner.avatar} />
           <Nick size={size}>{post.owner.username}</Nick>
         </Column>
         <Column>
