@@ -5,6 +5,7 @@ import Post from '../../components/post/Post';
 import { createUrl, getData } from '../../utils/fetcher';
 import { BtnLight } from '../../components/Button';
 import NavBar from '../../components/NavBar';
+import ReactionBar from '../../components/reactions/ReactionBar';
 
 
 const genComments = comments => {
@@ -30,6 +31,7 @@ export default function PostPage() {
         </Post>
         <Row>
           <BtnLight onClick={() => history.push('/creator/' + id)}>COMMENT</BtnLight>
+          <ReactionBar reactions={post.reactions} postId={post._id} />
         </Row>
         <Row wrap>
           {genComments(post.comments)}

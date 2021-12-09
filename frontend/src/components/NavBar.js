@@ -49,7 +49,7 @@ export default function NavBar() {
             <Avatar size="30" {...loggedUser.avatar} userId={loggedUser._id} />
           </AvatarBackground>
           <Field width="15em" ref={userRef} />
-          <BtnDark>SEARCH USER</BtnDark>
+          <BtnDark onClick={() => history.push('/userByName/'+userRef.current.value)}>SEARCH USER</BtnDark>
         </Row>
         <Row>
           <BtnLight onClick={() => history.push('/feed')}>FEED</BtnLight>

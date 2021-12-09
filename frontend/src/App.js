@@ -26,9 +26,9 @@ export default function App() {
         <Route path="/post/:id">
           <PostPage />
         </Route>
-        <Route path="/user/:id">
+        <Route path={["/userByName/:name","/user/:id"]}>
           <UserPage />
-        </Route>
+        </Route>  
         <Route path="/login">
           <LoginPage />
         </Route>

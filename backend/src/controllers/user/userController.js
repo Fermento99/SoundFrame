@@ -55,4 +55,13 @@ router.get('/get/:id', (req, res) => {
   });
 });
 
+router.get('/getByName/:name', (req, res) => {
+  console.log('getting user data by name');
+
+  UserBO.getDataByName(req.params.name).then(data => {
+    if (data) { res.status(200).json(data); }
+    else { res.status(404).send(); }
+  });
+});
+
 module.exports = router;

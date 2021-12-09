@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Avatar from '../../components/Avatar';
 import { BtnDark, BtnLight } from '../../components/Button';
@@ -37,27 +37,35 @@ const observeButton = (observed, id, setter) => {
 };
 
 export default function UserPage() {
-  const { id } = useParams();
-  const url = createUrl('user', 'get/' + id);
+  const { id, name } = useParams();
+  let url;
+  if (name) { url = createUrl('user', 'getByName/' + name); }
+  else { url = createUrl('user', 'get/' + id); }
   const [data, setData] = useState(null);
   const [observed, setObserved] = useState(false);
-  console.log(url);
+
+  useEffect(() => {
+    getData(url).then(data => setData(data)).catch(() => setData({error: true, posts: [], user: {username: 'No user found', avatar: {front: 'E', color: '#f00', colors: ['#000']}} }));
+  }, [url])
+
+  
+
   const loggedUser = getItem('user_SF');
-  if (loggedUser.observed.includes(id) !== observed) { setObserved(!observed); }
+  if (loggedUser.observed.includes(data.user._id) !== observed) { setObserved(!observed); }
 
   if (!data) {
-    getData(url).then(data => setData(data));
     return (<Column>
       <NavBar />
     </Column>);
   }
+  console.log(data)
   return (
     <Column>
       <NavBar />
       <Avatar size="70" {...data.user.avatar} />
       <h1>{data.user.username}</h1>
-      {data.user._id === loggedUser._id || observeButton(observed, data.user._id, setObserved)}
-      <Row wrap="true">
+      {data.user._id === loggedUser._id || data.error || observeButton(observed, data.user._id, setObserved)}
+      <Row wrap>
         {data.posts.map(post => <Post key={post._id} post={post.content} id={post._id} />)}
       </Row>
     </Column>
