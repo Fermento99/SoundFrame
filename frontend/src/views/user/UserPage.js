@@ -48,17 +48,16 @@ export default function UserPage() {
     getData(url).then(data => setData(data)).catch(() => setData({error: true, posts: [], user: {username: 'No user found', avatar: {front: 'E', color: '#f00', colors: ['#000']}} }));
   }, [url])
 
-  
-
   const loggedUser = getItem('user_SF');
-  if (loggedUser.observed.includes(data.user._id) !== observed) { setObserved(!observed); }
 
   if (!data) {
     return (<Column>
       <NavBar />
     </Column>);
   }
-  console.log(data)
+
+  if (loggedUser.observed.includes(data.user._id) !== observed) { setObserved(!observed); }
+  
   return (
     <Column>
       <NavBar />
