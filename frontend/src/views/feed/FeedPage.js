@@ -20,12 +20,9 @@ export default function FeedPage() {
   const urlFilter = {};
   if (filter.shape !== 'defaultValue') { urlFilter.shape = filter.shape; }
   if (filter.color !== 'defaultValue') { urlFilter.bgcolor = filter.color; }
-  console.log(urlFilter)
 
   const url = filter.feed ? createUrl('user', 'getFeed', urlFilter) : createUrl('post', 'get', urlFilter);
   const [posts, setPosts] = useState(null);
-  console.log(url)
-
 
   if (!loaded) {
     getData(url, getItem('accessToken_SF')).then(posts => {

@@ -35,7 +35,7 @@ export default function Avatar({ size, colors, front, color, userId }) {
   const history = useHistory();
   const click = userId
     ? () => { history.push('/user/' + userId); }
-    : () => { console.log('hah')};
+    : () => { };
 
   return (
     <AvatarWrapper size={size} colors={colors} color={color} onClick={e => { e.stopPropagation(); click(); }}>
